@@ -1,0 +1,83 @@
+.blob-container {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(90px);
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+  will-change: transform;
+}
+
+.blob1 {
+  top: -80px;
+  left: -80px;
+  width: 350px;
+  height: 350px;
+  background: #f472b6;
+  animation: blobMove1 2.5s infinite alternate-reverse, colorChange1 5s infinite alternate;
+}
+
+.blob2 {
+  top: 180px;
+  left: 60%;
+  width: 400px;
+  height: 400px;
+  background: #c084fc;
+  animation: blobMove2 3s infinite alternate-reverse;
+}
+
+.blob3 {
+  bottom: -100px;
+  left: 30%;
+  width: 420px;
+  height: 420px;
+  background: #fde68a;
+  animation: blobMove3 2.7s infinite alternate-reverse;
+}
+
+.blob4 {
+  top: 60%;
+  left: 10%;
+  width: 300px;
+  height: 320px;
+  border-radius: 58% 42% 65% 35% / 55% 35% 65% 45%;
+  background: #60a5fa;
+  animation: blobMove4 3s infinite alternate-reverse, colorChange2 5s infinite alternate;
+}
+
+/* Movimiento */
+@keyframes blobMove1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(30px, -40px) scale(1.2); }
+}
+@keyframes blobMove2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-25px, 25px) scale(1.25); }
+}
+@keyframes blobMove3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(35px, -20px) scale(1.05); }
+}
+@keyframes blobMove4 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-35px, 20px) scale(1.2); }
+}
+
+/* Cambios de color */
+@keyframes colorChange1 {
+  0% { background-color: #f472b6; }
+  50% { background-color: #fb7185; }
+  100% { background-color: #f472b6; }
+}
+@keyframes colorChange2 {
+  0% { background-color: #60a5fa; }
+  50% { background-color: #38bdf8; }
+  100% { background-color: #60a5fa; }
+}
