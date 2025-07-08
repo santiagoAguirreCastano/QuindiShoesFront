@@ -106,6 +106,7 @@ const Carrito = () => {
       method: "POST",
       response: "https://quindi-shoes-front-bd48.vercel.app/",
       confirmation: "https://quindishoes-backend-def.onrender.com/api/pagos/confirmacion",
+
       external: "false",
       x_extra1: userId.toString(),
       x_extra2: JSON.stringify(carritoReducido),

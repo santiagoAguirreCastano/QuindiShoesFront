@@ -38,21 +38,21 @@ const EmpleadoCard = ({ empleado, onUpdate, onDelete }) => {
       initial={{ opacity: 0, translateY: 20 }}
       animate={{ opacity: 1, translateY: 0 }}
       transition={{ duration: 0.4 }}
-      className="bg-white rounded-2xl border border-green-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-6 flex flex-col md:flex-row gap-5"
+      className="bg-white rounded-2xl border border-green-200 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 p-5 flex flex-col sm:flex-row gap-5"
     >
       {/* Inicial */}
-      <div className="flex-shrink-0 w-20 h-20 rounded-full bg-green-100 text-green-700 font-bold text-3xl flex items-center justify-center shadow-inner mx-auto md:mx-0">
+      <div className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-green-100 text-green-700 font-bold text-2xl sm:text-3xl flex items-center justify-center shadow-inner mx-auto sm:mx-0">
         {inicial}
       </div>
 
       {/* Información */}
-      <div className="flex flex-col justify-between flex-grow">
+      <div className="flex flex-col justify-between flex-grow text-center sm:text-left">
         <div>
-          <div className="flex justify-between items-center mb-2">
-            <h2 className="text-xl font-semibold text-gray-800">
+          <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-1 mb-2">
+            <h2 className="text-lg sm:text-xl font-semibold text-gray-800">
               {empleado.nombre} {empleado.apellido}
             </h2>
-            <span className="text-xs font-medium text-white bg-green-600 px-3 py-1 rounded-full shadow">
+            <span className="text-xs font-medium text-white bg-green-600 px-3 py-1 rounded-full shadow w-fit mx-auto sm:mx-0">
               {empleado.rol}
             </span>
           </div>
@@ -64,7 +64,7 @@ const EmpleadoCard = ({ empleado, onUpdate, onDelete }) => {
             </div>
             <div>
               <p className="text-xs text-gray-500">Correo</p>
-              <p className="font-medium">{empleado.correo}</p>
+              <p className="font-medium break-words">{empleado.correo}</p>
             </div>
             <div>
               <p className="text-xs text-gray-500">Teléfono</p>
@@ -72,22 +72,22 @@ const EmpleadoCard = ({ empleado, onUpdate, onDelete }) => {
             </div>
             <div>
               <p className="text-xs text-gray-500">Dirección</p>
-              <p className="font-medium">{empleado.direccion}</p>
+              <p className="font-medium break-words">{empleado.direccion}</p>
             </div>
           </div>
         </div>
 
         {/* Botones */}
-        <div className="flex flex-wrap gap-3 mt-5">
+        <div className="flex flex-wrap gap-3 justify-center sm:justify-start mt-5">
           <button
             onClick={onUpdate}
-            className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white text-sm px-4 py-2 rounded-lg shadow-md transition-all duration-200"
+            className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white text-sm px-4 py-2 rounded-lg shadow-md transition-all"
           >
             <FaEdit /> Actualizar
           </button>
           <button
             onClick={confirmarEliminar}
-            className="flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white text-sm px-4 py-2 rounded-lg shadow-md transition-all duration-200"
+            className="flex items-center gap-2 bg-red-500 hover:bg-red-600 text-white text-sm px-4 py-2 rounded-lg shadow-md transition-all"
           >
             <FaTrash /> Eliminar
           </button>
@@ -96,6 +96,8 @@ const EmpleadoCard = ({ empleado, onUpdate, onDelete }) => {
     </motion.div>
   );
 };
+
+export default EmpleadoCard;
 
 
 
@@ -139,10 +141,10 @@ export const ListaEmpleados = () => {
     setMostrarModalActualizar(true);
   };
 
-  return (  
+  return (
     <>
       {/* Lista de tarjetas */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 px-6 py-10">
+      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 px-4 py-10 w-full max-w-7xl mx-auto">
         {empleados.map((empleado) => (
           <EmpleadoCard
             key={empleado.id_usuario}
@@ -156,7 +158,7 @@ export const ListaEmpleados = () => {
       {/* Botón flotante para agregar */}
       <button
         onClick={() => setMostrarModalCrear(true)}
-        className="fixed bottom-6 right-6 bg-green-600 hover:bg-green-700 text-white p-4 rounded-full shadow-lg transition-all duration-300"
+        className="fixed bottom-6 right-6 bg-green-600 hover:bg-green-700 text-white p-4 rounded-full shadow-lg transition-all"
         title="Agregar Empleado"
       >
         <FaPlus size={20} />
