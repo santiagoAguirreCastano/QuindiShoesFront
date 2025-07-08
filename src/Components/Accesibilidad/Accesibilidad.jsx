@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 
 export const Accesibilidad = () => {
   useEffect(() => {
-    // Configuración del widget de accesibilidad (nueva)
+    // Configuración del widget de accesibilidad
     window.interdeal = {
       get sitekey() {
-        return '90cf43a9587416a40f69488555fe005d';
+        return '4f87b42463faf00276d7aeedebf1262e'; // Clave original proporcionada
       },
       get domains() {
         return {
@@ -17,7 +17,7 @@ export const Accesibilidad = () => {
       Menulang: 'ES',
       draggable: true,
       btnStyle: {
-        vPosition: ['80%', '80%'],
+        vPosition: ['50%', '80%'],
         margin: ['0', '0'],
         scale: ['0.5', '0.5'],
         color: {
@@ -27,7 +27,7 @@ export const Accesibilidad = () => {
         icon: {
           outline: false,
           outlineColor: '#ffffff',
-          type: 11,
+          type: 10, // Cambiado según tu versión original
           shape: 'semicircle',
         },
       },
@@ -45,7 +45,6 @@ export const Accesibilidad = () => {
     document.body.appendChild(script);
 
     return () => {
-      // Limpieza cuando se desmonte el componente
       document.body.removeChild(script);
     };
   }, []);
