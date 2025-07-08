@@ -1,5 +1,7 @@
 // [IMPORTS]
 import { useEffect, useRef, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import confetti from 'canvas-confetti';
 import birdImg from '../../assets/images/crocodilo.png';
 import birdFlapImg from '../../assets/images/sprite-up.png';
 import fondoVideo from '../../assets/images/202505231554.mp4';
@@ -92,6 +94,18 @@ useEffect(() => {
     scoreRef.current = score;
   }, [score]);
 
+  useEffect(() => {
+  if (descuentoMsg) {
+    confetti({
+      particleCount: 150,
+      spread: 90,
+      origin: { y: 0.6 },
+      zIndex: 9999,
+    });
+  }
+}, [descuentoMsg]);
+
+
   const guardarPuntuacion = async (puntuacion) => {
     try {
       const token = localStorage.getItem("token");
@@ -109,8 +123,8 @@ useEffect(() => {
     }
   };
 
-  const gravity = 0.1;
-  const flapPower = -1.5;
+  const gravity = 0.02; // Gravedad que afecta al pájaro
+  const flapPower = -0.7;
   const moveSpeedRef = useRef(0.3);
   const [_, setDummy] = useState(0); // para forzar re-render si quieres mostrar velocidad (opcional)
 
@@ -463,17 +477,39 @@ return (
           )}
         </div>
       )}
-      {descuentoMsg && (
-        <div
-          className="fixed inset-0 flex items-center justify-center z-[9999] bg-black bg-opacity-40 animate-fade-in"
-          onClick={() => setDescuentoMsg(null)}
-        >
-          <div className="bg-white rounded-xl shadow-2xl p-8 text-2xl text-center animate-bounce">
-            {descuentoMsg}
-            <div className="mt-4 text-base text-gray-500">(Haz clic para cerrar)</div>
-          </div>
-        </div>
-      )}
+      <AnimatePresence>
+        {descuentoMsg && (
+          <motion.div
+            className="fixed inset-0 z-[9999] flex items-center justify-center bg-white/60 backdrop-blur-md px-4"
+            onClick={() => setDescuentoMsg(null)}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.4, type: "spring", stiffness: 300 }}
+              className="bg-white rounded-3xl shadow-2xl p-8 max-w-md w-full border border-pink-200 text-center relative"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setDescuentoMsg(null)}
+                className="absolute top-4 right-4 text-pink-500 hover:text-pink-700 text-2xl font-bold transition-transform duration-200 hover:rotate-90"
+                aria-label="Cerrar"
+              >
+                ✕
+              </button>
+
+              <h2 className="text-3xl font-extrabold text-pink-600 mb-2">🎉 ¡Descuento Obtenido!</h2>
+              <p className="text-gray-700 text-xl font-medium">{descuentoMsg}</p>
+              <p className="mt-4 text-sm text-gray-500">(Haz clic fuera o en ✕ para cerrar)</p>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     </div>
 );
 }
