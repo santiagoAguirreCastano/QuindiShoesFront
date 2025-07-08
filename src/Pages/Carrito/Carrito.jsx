@@ -104,8 +104,9 @@ const Carrito = () => {
       tax: "0",
       country: "co",
       method: "POST",
-      response: "https://quindi-shoes-frontend-def.vercel.app/",
-      confirmation: "http://localhost:3000/api/pagos/confirmacion",
+      response: "https://quindi-shoes-front-bd48.vercel.app/",
+      confirmation: "https://quindishoes-backend-def.onrender.com/api/pagos/confirmacion",
+
       external: "false",
       x_extra1: userId.toString(),
       x_extra2: JSON.stringify(carritoReducido),

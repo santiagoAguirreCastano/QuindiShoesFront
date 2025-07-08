@@ -185,6 +185,7 @@ const ModelosGuardados = ({ modelos }) => (
 
 
 const ProductoCard = ({ producto, onDelete, onUpdate, onTogglePersonalizacion, onToggleActivo }) => {
+
   const navigate = useNavigate();
   const BASE_URL = "http://localhost:3000";
 
@@ -674,6 +675,37 @@ export const ListaProductos = () => {
         </motion.div>
       )}
 
+        {/* Sección personalización */}
+        {seccion === "personalizacion" && (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            <div className="bg-white rounded-2xl shadow-md p-6 mb-6">
+              <h3 className="text-xl font-bold mb-4 flex items-center gap-2 text-indigo-700">
+                <FaPalette /> Productos Personalizables
+              </h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                {productosPersonalizables.length === 0 ? (
+                  <span className="text-gray-500">No hay productos personalizables.</span>
+                ) : (
+                  productosPersonalizables.map((producto) => (
+                    <div key={producto.id_producto} className="bg-pink-50 rounded-xl p-4 shadow">
+                      <img
+                        src={
+                          producto.imagenes?.[0]?.startsWith("/")
+                            ? "http://localhost:3000" + producto.imagenes[0]
+                            : producto.imagenes?.[0] || "https://via.placeholder.com/300x200?text=Sin+Imagen"
+                        }
+                        alt={producto.nombre_producto}
+                        className="w-full h-40 object-contain rounded-lg mb-2"
+                      />
+                      <h4 className="font-bold text-pink-700">{producto.nombre_producto}</h4>
+                      <p className="text-sm text-gray-500">{producto.tipo_producto}</p>
+                      <p className="text-md text-emerald-600 font-semibold">
+                        ${producto.precio_producto?.toLocaleString("es-CO")}
+                      </p>
+                    </div>
+                  ))
+                )}
+              </div>
       {/* Modal Editar */}
       <AnimatePresence>
         {mostrarModalEditar && (

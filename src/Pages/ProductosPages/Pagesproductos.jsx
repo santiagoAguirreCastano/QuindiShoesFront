@@ -193,7 +193,10 @@ export const Pagesproductos = () => {
               </button>
             </div>
           ) : (
-            <MostrarProducto productosProp={productosActivos} />
+           <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-1 xl:grid-cols-1 gap-6">
+  <MostrarProducto productosProp={productosActivos} />
+</div>
+
           )}
         </div>
       </div>

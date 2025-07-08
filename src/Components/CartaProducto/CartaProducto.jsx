@@ -122,78 +122,79 @@ export const CartaProducto = ({ producto }) => {
 
   return (
     <div
-      onClick={irADetalle}
-      style={{ backgroundColor: bgColor }}
-      className="rounded-3xl p-5 shadow-lg cursor-pointer transition-all duration-300 transform hover:scale-[1.015] hover:shadow-2xl border border-white/30 backdrop-blur-md w-90"
+  onClick={irADetalle}
+  style={{ backgroundColor: bgColor }}
+  className="rounded-3xl p-5 shadow-lg cursor-pointer transition-all duration-300 transform hover:scale-[1.015] hover:shadow-2xl border border-white/30 backdrop-blur-md w-90"
+>
+  <div className="relative group">
+    <img
+      ref={imgRef}
+      src={imagenPrincipal}
+      alt={producto.nombre_producto}
+      className="w-full h-56 object-contain mb-4 rounded-2xl transition-transform duration-300 group-hover:scale-105 mix-blend-multiply"
+    />
+    <button
+      onClick={toggleFavorito}
+      className="absolute top-3 right-3 bg-white/80 hover:bg-white text-pink-400 hover:text-pink-600 p-2 rounded-full shadow-md transition duration-300 z-10"
     >
-      <div className="relative group">
-        <img
-          ref={imgRef}
-          src={imagenPrincipal}
-          alt={producto.nombre_producto}
-          className="w-full h-56 object-contain mb-4 rounded-2xl transition-transform duration-300 group-hover:scale-105 mix-blend-multiply"
-        />
+      {esFavorito ? <FaHeart size={18} /> : <FaRegHeart size={18} />}
+    </button>
+    <span className="absolute bottom-3 left-3 bg-white/60 text-gray-800 text-[11px] font-medium px-2 py-0.5 rounded-full shadow">
+      {producto.genero_producto}
+    </span>
+  </div>
 
-        <button
-          onClick={toggleFavorito}
-          className="absolute top-3 right-3 bg-white/80 hover:bg-white text-pink-400 hover:text-pink-600 p-2 rounded-full shadow-md transition duration-300 z-10"
-        >
-          {esFavorito ? <FaHeart size={18} /> : <FaRegHeart size={18} />}
-        </button>
+  {/* Contenido que define la altura */}
+  <div className="space-y-2 min-h-[180px] flex flex-col justify-between">
+    <div>
+      <h3 className="text-xl font-semibold text-gray-800 truncate">{producto.nombre_producto}</h3>
+      <p className="text-sm text-gray-500 capitalize">Tipo: {producto.tipo_producto}</p>
 
-        <span className="absolute bottom-3 left-3 bg-white/60 text-gray-800 text-[11px] font-medium px-2 py-0.5 rounded-full shadow">
-          {producto.genero_producto}
-        </span>
-      </div>
-
-      <div className="space-y-2">
-        <h3 className="text-xl font-semibold text-gray-800 truncate">{producto.nombre_producto}</h3>
-        <p className="text-sm text-gray-500 capitalize">Tipo: {producto.tipo_producto}</p>
-
-        <div className="flex justify-between items-center pt-2">
-          <p className="text-lg font-bold text-green-700">${producto.precio_producto}</p>
-          {/* Botón de personalización */}
-          {producto.personalizacion_activa === 1 && (
-            <button
-              className="ml-2 px-3 py-1 bg-indigo-600 text-white rounded-full text-xs font-semibold hover:bg-indigo-700 transition"
-              onClick={e => {
-                e.stopPropagation();
-                navigate(`/personalizador`, { state: { producto } });
-              }}
-            >
-              Personalizar
-            </button>
-          )}
-        </div>
-
-        {!!producto.reserva_activa && (
-          <span className="inline-block mt-2 px-3 py-1 text-xs font-medium bg-green-100 text-green-700 rounded-full shadow animate-bounce">
-            ¡Reserva disponible!
-          </span>
+      <div className="flex justify-between items-center pt-2">
+        <p className="text-lg font-bold text-green-700">${producto.precio_producto}</p>
+        {producto.personalizacion_activa === 1 && (
+          <button
+            className="ml-2 px-3 py-1 bg-indigo-600 text-white rounded-full text-xs font-semibold hover:bg-indigo-700 transition"
+            onClick={e => {
+              e.stopPropagation();
+              navigate(`/personalizador`, { state: { producto } });
+            }}
+          >
+            Personalizar
+          </button>
         )}
-
-        <div className="flex items-center gap-1 mt-2">
-          {promedio ? (
-            <>
-              <span className="text-yellow-500 text-sm">{promedio}</span>
-              {[1, 2, 3, 4, 5].map(i => (
-                <svg
-                  key={i}
-                  className={`w-4 h-4 ${i <= Math.round(promedio) ? "text-yellow-400" : "text-gray-300"}`}
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.564-.955L10 0l2.948 5.955 6.564.955-4.756 4.635 1.122 6.545z" />
-                </svg>
-              ))}
-              <span className="text-xs text-gray-500">({promedio} / 5)</span>
-            </>
-          ) : (
-            <span className="text-xs text-gray-400">Sin valoraciones</span>
-          )}
-        </div>
       </div>
+
+      {!!producto.reserva_activa && (
+        <span className="inline-block mt-2 px-3 py-1 text-xs font-medium bg-green-100 text-green-700 rounded-full shadow animate-bounce">
+          ¡Reserva disponible!
+        </span>
+      )}
     </div>
+
+    <div className="flex items-center gap-1 mt-2">
+      {promedio ? (
+        <>
+          <span className="text-yellow-500 text-sm">{promedio}</span>
+          {[1, 2, 3, 4, 5].map(i => (
+            <svg
+              key={i}
+              className={`w-4 h-4 ${i <= Math.round(promedio) ? "text-yellow-400" : "text-gray-300"}`}
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path d="M10 15l-5.878 3.09 1.122-6.545L.488 6.91l6.564-.955L10 0l2.948 5.955 6.564.955-4.756 4.635 1.122 6.545z" />
+            </svg>
+          ))}
+          <span className="text-xs text-gray-500">({promedio} / 5)</span>
+        </>
+      ) : (
+        <span className="text-xs text-gray-400">Sin valoraciones</span>
+      )}
+    </div>
+  </div>
+</div>
+
   );
 };
 
@@ -240,14 +241,24 @@ export const MostrarProducto = ({ productosProp }) => {
     visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: 'easeOut' } },
   };
 
-  return (
+ return (
     <motion.div
       className="flex-1"
       variants={containerVariants}
       initial="hidden"
       animate="visible"
     >
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 w-full">
+      <div className="
+        grid 
+        grid-cols-1 
+        sm:grid-cols-2 
+        md:grid-cols-2 
+        lg:grid-cols-2 
+        xl:grid-cols-2 
+        2xl:grid-cols-4
+        gap-6 
+        gap-y-8
+      ">
         <AnimatePresence>
           {productosMostrar.map((producto) => (
             <motion.div
