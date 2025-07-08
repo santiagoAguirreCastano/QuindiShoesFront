@@ -52,7 +52,7 @@ export const LoginForm = () => {
     }
 
     try {
-      const response = await axios.post("https://quindishoes-backend-def.onrender.com/auth", loginData);
+      const response = await axios.post("http://localhost:3000/auth", loginData);
       // Validar que el token tiene datos de usuario
       const token = response.data.token;
       let payload = {};

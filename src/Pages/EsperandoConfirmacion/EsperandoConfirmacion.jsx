@@ -24,7 +24,7 @@ const EsperandoConfirmacion = () => {
 
       try {
         setMensaje("🔄 Confirmando correo...");
-        await axios.get(`https://quindishoes-backend-def.onrender.com/verificar-correo?token=${token}`);
+        await axios.get(`http://localhost:3000/verificar-correo?token=${token}`);
         setMensaje("✅ Correo confirmado con éxito. Redirigiendo al login...");
         setError(false);
         setTimeout(() => navigate("/login"), 3000);

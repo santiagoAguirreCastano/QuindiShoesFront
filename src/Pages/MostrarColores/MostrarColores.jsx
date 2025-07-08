@@ -32,7 +32,7 @@ export const ListaColores = () => {
 
   const cargarColores = () => {
     axios
-      .get("https://quindishoes-backend-def.onrender.com/color", {
+      .get("http://localhost:3000/color", {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then((res) => setColores(res.data))
@@ -45,7 +45,7 @@ export const ListaColores = () => {
 
   const handleEliminar = (id) => {
     axios
-      .delete(`https://quindishoes-backend-def.onrender.com/color/${id}`, {
+      .delete(`http://localhost:3000/color/${id}`, {
         headers: { Authorization: `Bearer ${token}` }
       })
       .then(() => cargarColores())

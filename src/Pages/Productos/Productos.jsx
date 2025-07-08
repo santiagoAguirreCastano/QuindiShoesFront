@@ -147,7 +147,7 @@ const ModelosGuardados = ({ modelos }) => (
         modelos.map((modelo) => (
           <div key={modelo.id} className="bg-gray-50 rounded-xl p-4 shadow flex flex-col">
             <VisorModeloGLB
-              url={`https://quindishoes-backend-def.onrender.com/personalizacion/modelo/${modelo.id}`}
+              url={`http://localhost:3000/personalizacion/modelo/${modelo.id}`}
             />
             {modelo.fecha && (
               <p className="mt-2 text-xs text-gray-400">
@@ -170,7 +170,7 @@ const ModelosGuardados = ({ modelos }) => (
 
 const ProductoCard = ({ producto, onDelete, onUpdate, onTogglePersonalizacion, onToggleActivo }) => {
   const navigate = useNavigate(); // <- Agregado
-  const BASE_URL = "https://quindishoes-backend-def.onrender.com";
+  const BASE_URL = "http://localhost:3000";
 
   const handleCardClick = (e) => {
     if (e.target.closest("button")) return;
@@ -589,7 +589,7 @@ export const ListaProductos = () => {
                       <img
                         src={
                           producto.imagenes?.[0]?.startsWith("/")
-                            ? "https://quindishoes-backend-def.onrender.com" + producto.imagenes[0]
+                            ? "http://localhost:3000" + producto.imagenes[0]
                             : producto.imagenes?.[0] || "https://via.placeholder.com/300x200?text=Sin+Imagen"
                         }
                         alt={producto.nombre_producto}

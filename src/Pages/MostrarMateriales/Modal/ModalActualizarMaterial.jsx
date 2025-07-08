@@ -19,7 +19,7 @@ const ModalActualizarMaterial = ({ material, onClose, onActualizar }) => {
     try {
       console.log("Datos a enviar:", formData);
       await axios.put(
-        `https://quindishoes-backend-def.onrender.com/material/${formData.id_material}`,
+        `http://localhost:3000/material/${formData.id_material}`,
         formData,
         {
           headers: {
