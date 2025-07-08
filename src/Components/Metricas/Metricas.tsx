@@ -124,7 +124,7 @@ const [mape, setMape] = useState<number | null>(null);
         const cargarDatos = async () => {
             setLoading(true);
             try {
-                const res = await axios.get(`https://quindishoes-backend-def.onrender.com/metricas/ventas?agrupacion=${agrupacion}`);
+                const res = await axios.get(`http://localhost:3000/metricas/ventas?agrupacion=${agrupacion}`);
                 const datosFormateados: ChartData[] = res.data.map((item: any) => {
                     let rawDate = item.fecha;
                     if (agrupacion === 'mes') {
@@ -167,7 +167,7 @@ const [mape, setMape] = useState<number | null>(null);
   }
 
   try {
-    const res = await fetch(`https://quindishoes-backend-def.onrender.com/metricasIA/metricas/prediccion?agrupacion=${agrupacion}`);
+    const res = await fetch(`http://localhost:3000/metricasIA/metricas/prediccion?agrupacion=${agrupacion}`);
     if (!res.ok) {
       const errorText = await res.text();
       throw new Error(`HTTP error! status: ${res.status}, message: ${errorText}`);
@@ -415,8 +415,8 @@ console.log("Valores numéricos:", chartData.map(d => ({
         const cargarTopProductos = async () => {
             try {
                 const [masRes, menosRes] = await Promise.all([
-                    axios.get('https://quindishoes-backend-def.onrender.com/metricas/top-productos?tipo=mas&limite=5'),
-                    axios.get('https://quindishoes-backend-def.onrender.com/metricas/top-productos?tipo=menos&limite=5')
+                    axios.get('http://localhost:3000/metricas/top-productos?tipo=mas&limite=5'),
+                    axios.get('http://localhost:3000/metricas/top-productos?tipo=menos&limite=5')
                 ]);
                 setTopProductosMas(masRes.data);
                 setTopProductosMenos(menosRes.data);
@@ -430,7 +430,7 @@ console.log("Valores numéricos:", chartData.map(d => ({
     useEffect(() => {
         const cargarInactivos = async () => {
             try {
-                const res = await axios.get('https://quindishoes-backend-def.onrender.com/metricas/productos-inactivos');
+                const res = await axios.get('http://localhost:3000/metricas/productos-inactivos');
                 setProductosInactivos(res.data);
             } catch (err) {
                 console.error('Error al obtener productos inactivos:', err);
@@ -453,67 +453,46 @@ if (modoVisualizacion === 'prediccion') {
 
    
         return (
-  <div className="p-6 bg-gray-600 min-h-screen rounded-xl text-gray-800">
-    <h2 className="text-3xl font-bold text-white text-center mb-8">
+  <div className="p-4 sm:p-6 bg-gray-600 min-h-screen rounded-xl text-gray-800">
+    <h2 className="text-2xl sm:text-3xl font-bold text-white text-center mb-6 sm:mb-8">
       Ventas por {agrupacion.toUpperCase()}
     </h2>
 
-    {/* Filtros con estilo moderno */}
-<div className="flex flex-wrap justify-center gap-6 mb-12 animate-fade-in">
-  {/* Agrupación */}
-  <div className="flex flex-col items-start">
-    <label className="text-sm font-semibold text-white mb-2">Agrupación:</label>
-    <select
-      value={agrupacion}
-      onChange={(e) => setAgrupacion(e.target.value as typeof agrupacion)}
-      className="px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-    >
-      {agrupaciones.map((a) => (
-        <option key={a} value={a}>
-          {a.charAt(0).toUpperCase() + a.slice(1)}
-        </option>
-      ))}
-    </select>
-  </div>
+    {/* Filtros */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10 animate-fade-in">
+      <div className="flex flex-col">
+        <label className="text-sm font-semibold text-white mb-2">Agrupación:</label>
+        <select value={agrupacion} onChange={(e) => setAgrupacion(e.target.value as any)} className="px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+          {agrupaciones.map((a) => (
+            <option key={a} value={a}>{a.charAt(0).toUpperCase() + a.slice(1)}</option>
+          ))}
+        </select>
+      </div>
 
-  {/* Tipo de gráfica */}
-  <div className="flex flex-col items-start">
-    <label className="text-sm font-semibold text-white mb-2">Tipo de gráfica:</label>
-    <select
-      value={tipoGrafica}
-      onChange={(e) => setTipoGrafica(e.target.value as any)}
-      disabled={modoVisualizacion !== 'historico'}
-      className="px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 shadow-sm disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-    >
-      <option value="bar">Barras</option>
-      <option value="line">Línea</option>
-    </select>
-  </div>
+      <div className="flex flex-col">
+        <label className="text-sm font-semibold text-white mb-2">Tipo de gráfica:</label>
+        <select value={tipoGrafica} onChange={(e) => setTipoGrafica(e.target.value as any)} disabled={modoVisualizacion !== 'historico'} className="px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 shadow-sm disabled:opacity-50 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+          <option value="bar">Barras</option>
+          <option value="line">Línea</option>
+        </select>
+      </div>
 
-  {/* Vista */}
-  <div className="flex flex-col items-start">
-    <label className="text-sm font-semibold text-white mb-2">Vista:</label>
-    <select
-      value={modoVisualizacion}
-      onChange={(e) => setModoVisualizacion(e.target.value as any)}
-      className="px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all"
-    >
-      <option value="historico">Solo histórico</option>
-      <option value="prediccion">Solo predicción</option>
-      <option value="combinado">Histórico + Predicción</option>
-    </select>
-  </div>
-</div>
+      <div className="flex flex-col">
+        <label className="text-sm font-semibold text-white mb-2">Vista:</label>
+        <select value={modoVisualizacion} onChange={(e) => setModoVisualizacion(e.target.value as any)} className="px-4 py-2 rounded-lg bg-gray-800 text-white border border-gray-700 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all">
+          <option value="historico">Solo histórico</option>
+          <option value="prediccion">Solo predicción</option>
+          <option value="combinado">Histórico + Predicción</option>
+        </select>
+      </div>
+    </div>
 
-
-    {/* Tendencia */}
     {modoVisualizacion !== 'historico' && tendencia && (
       <p className={`text-center mt-4 font-semibold text-lg transition-all duration-500 ${tendencia === 'positiva' ? 'text-green-400' : 'text-red-400'}`}>
         Tendencia {tendencia}
       </p>
     )}
 
-    {/* Métrica de precisión */}
     {modoVisualizacion !== 'historico' && (
       <div className="flex justify-center mt-6 gap-6 flex-wrap animate-fade-in">
         <div className="bg-white rounded-2xl p-4 shadow w-60 text-center hover:scale-105 transition">
@@ -522,70 +501,53 @@ if (modoVisualizacion === 'prediccion') {
             {mae != null ? mae.toLocaleString('es-CO', { style: 'currency', currency: 'COP' }) : 'Sin datos'}
           </p>
         </div>
-        <p className="text-center text-sm text-gray-400 italic w-full">
-          *Las predicciones pueden variar con cada recarga.
-        </p>
+        <p className="text-center text-sm text-gray-400 italic w-full">*Las predicciones pueden variar con cada recarga.</p>
       </div>
     )}
 
-    {/* Gráfico + Productos No Vendidos */}
     <div className="grid grid-cols-1 xl:grid-cols-3 gap-8 mt-12">
-      {/* Gráfica (colspan 2 para agrandar) */}
-     {/* Gráfica (colspan 2 para agrandar) */}
-<div className="xl:col-span-2 bg-white rounded-2xl shadow p-6 h-[700px] animate-fade-in-slow">
-  {chartData.length === 0 ? (
-    <div className="flex items-center justify-center h-full text-gray-400 text-lg italic">
-      No hay datos para mostrar.
-    </div>
-  ) : (
-    <ResponsiveContainer width="100%" height="100%">
-      {tipoGrafica === 'bar' ? (
-        <BarChart data={chartData}>
-          <CartesianGrid strokeDasharray="4 4" />
-          <XAxis dataKey={dataKeyX} />
-          <YAxis domain={[0, yMax]} tickFormatter={formatYAxisTick} />
-          <Tooltip content={<CustomTooltip />} />
-          <Legend />
-          {modoVisualizacion !== 'prediccion' && (
-            <Bar dataKey="total_ventas" fill="#60A5FA" name="Ventas Históricas" />
-          )}
-          {modoVisualizacion !== 'historico' && (
-            <Bar dataKey="prediccion_ventas" fill="#34D399" name="Ventas Predichas" />
-          )}
-        </BarChart>
-      ) : (
-        <LineChart data={chartData}>
-          <CartesianGrid strokeDasharray="4 4" />
-          <XAxis dataKey={dataKeyX} />
-          <YAxis domain={[0, yMax]} tickFormatter={formatYAxisTick} />
-          <Tooltip content={<CustomTooltip />} />
-          <Legend />
-          {modoVisualizacion !== 'prediccion' && (
-            <Line type="monotone" dataKey="total_ventas" stroke="#60A5FA" strokeWidth={3} dot={{ r: 4 }} name="Ventas Históricas" />
-          )}
-          {modoVisualizacion !== 'historico' && (
-            <Line type="monotone" dataKey="prediccion_ventas" stroke="#34D399" strokeWidth={3} dot={{ r: 4 }} name="Ventas Predichas" />
-          )}
-        </LineChart>
-      )}
-    </ResponsiveContainer>
-  )}
-</div>
+      <div className="xl:col-span-2 bg-white rounded-2xl shadow p-4 sm:p-6 h-[500px] sm:h-[650px] xl:h-[700px] animate-fade-in-slow">
+        {chartData.length === 0 ? (
+          <div className="flex items-center justify-center h-full text-gray-400 text-lg italic">No hay datos para mostrar.</div>
+        ) : (
+          <ResponsiveContainer width="100%" height="100%">
+            {tipoGrafica === 'bar' ? (
+              <BarChart data={chartData}>
+                <CartesianGrid strokeDasharray="4 4" />
+                <XAxis dataKey={dataKeyX} />
+                <YAxis domain={[0, yMax]} tickFormatter={formatYAxisTick} />
+                <Tooltip content={<CustomTooltip />} />
+                <Legend />
+                {modoVisualizacion !== 'prediccion' && <Bar dataKey="total_ventas" fill="#60A5FA" name="Ventas Históricas" />}
+                {modoVisualizacion !== 'historico' && <Bar dataKey="prediccion_ventas" fill="#34D399" name="Ventas Predichas" />}
+              </BarChart>
+            ) : (
+              <LineChart data={chartData}>
+                <CartesianGrid strokeDasharray="4 4" />
+                <XAxis dataKey={dataKeyX} />
+                <YAxis domain={[0, yMax]} tickFormatter={formatYAxisTick} />
+                <Tooltip content={<CustomTooltip />} />
+                <Legend />
+                {modoVisualizacion !== 'prediccion' && <Line type="monotone" dataKey="total_ventas" stroke="#60A5FA" strokeWidth={3} dot={{ r: 4 }} name="Ventas Históricas" />}
+                {modoVisualizacion !== 'historico' && <Line type="monotone" dataKey="prediccion_ventas" stroke="#34D399" strokeWidth={3} dot={{ r: 4 }} name="Ventas Predichas" />}
+              </LineChart>
+            )}
+          </ResponsiveContainer>
+        )}
+      </div>
 
-
-      {/* Productos no vendidos */}
-      <div className="bg-white rounded-2xl shadow p-6 animate-fade-in">
+      <div className="bg-white rounded-2xl shadow p-4 sm:p-6 animate-fade-in">
         <h3 className="text-lg font-bold text-gray-800 mb-4 text-center">Productos No Vendidos (Semana)</h3>
         {productosInactivos.length === 0 ? (
           <p className="text-center text-green-500">¡Todos han sido vendidos! 🎉</p>
         ) : (
           <div className="space-y-4">
-            {productosInactivos.map((producto, i) => (
+            {productosInactivos.map((producto) => (
               <div key={producto.id_producto} className="flex items-center gap-4 bg-gray-50 p-3 rounded-xl">
-                <img src={producto.url_imagen} alt={producto.nombre_producto} className="w-12 h-12 object-cover rounded-md" />
+                <img src={producto.url_imagen} alt={producto.nombre_producto} className="w-10 h-10 sm:w-12 sm:h-12 object-cover rounded-md" />
                 <div className="flex-1">
                   <p className="font-medium text-gray-800 truncate">{producto.nombre_producto}</p>
-                  <p className="text-sm text-gray-500">ID: {producto.id_producto}</p>
+                  <p className="text-xs sm:text-sm text-gray-500 truncate">ID: {producto.id_producto}</p>
                 </div>
                 <span className="text-sm font-bold text-gray-700">${producto.precio_producto?.toFixed(2)}</span>
               </div>
@@ -595,83 +557,55 @@ if (modoVisualizacion === 'prediccion') {
       </div>
     </div>
 
-    {/* Tops: Más y Menos Vendidos (ahora debajo de gráfica) */}
-    <div className="grid grid-cols-1 xl:grid-cols-2 gap-8 mt-16 animate-fade-in-slow">
-  {[{
-    titulo: "Top Productos Más Vendidos",
-    productos: topProductosMas,
-    color: 'from-green-100 to-green-50',
-    borde: 'green-500',
-    icono: '🔥'
-  }, {
-    titulo: "Top Productos Menos Vendidos",
-    productos: topProductosMenos,
-    color: 'from-red-100 to-red-50',
-    borde: 'red-500',
-    icono: '📉'
-  }].map(({ titulo, productos, color, borde, icono }, idx) => (
-    <div
-      key={idx}
-      className={`bg-white backdrop-blur-md border border-gray-200 rounded-3xl shadow-xl p-6 transition duration-500 hover:shadow-2xl`}
-    >
-      <h3 className="text-xl font-extrabold text-gray-800 mb-6 text-center flex items-center justify-center gap-2">
-        <span className={`text-${borde} text-2xl`}>{icono}</span> {titulo}
-      </h3>
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 animate-fade-in-slow">
+      {[{
+        titulo: "Top Productos Más Vendidos",
+        productos: topProductosMas,
+        color: 'from-green-100 to-green-50',
+        borde: 'green-500',
+        icono: '🔥'
+      }, {
+        titulo: "Top Productos Menos Vendidos",
+        productos: topProductosMenos,
+        color: 'from-red-100 to-red-50',
+        borde: 'red-500',
+        icono: '📉'
+      }].map(({ titulo, productos, color, borde, icono }, idx) => (
+        <div key={idx} className={`bg-white backdrop-blur-md border border-gray-200 rounded-3xl shadow-xl p-6 transition duration-500 hover:shadow-2xl`}>
+          <h3 className="text-xl font-extrabold text-gray-800 mb-6 text-center flex items-center justify-center gap-2">
+            <span className={`text-${borde} text-2xl`}>{icono}</span> {titulo}
+          </h3>
 
-      <div className="space-y-4">
-        {productos.map((prod, i) => (
-          <div
-            key={prod.id}
-            className={`flex items-center gap-4 px-4 py-3 rounded-2xl bg-gradient-to-r ${color} border-l-4 border-${borde}
-              shadow-sm hover:shadow-md transition transform hover:-translate-y-1 hover:scale-[1.01] duration-300`}
-          >
-            {/* Ranking con medalla */}
-            <div
-              className={`relative w-12 h-12 flex items-center justify-center rounded-full shadow-inner text-white font-bold text-lg
-              ${
-                i === 0
-                  ? 'bg-gradient-to-tr from-yellow-400 to-yellow-500'
-                  : i === 1
-                  ? 'bg-gradient-to-tr from-gray-300 to-gray-400'
-                  : i === 2
-                  ? 'bg-gradient-to-tr from-orange-400 to-orange-500'
-                  : 'bg-gray-700'
-              }`}
-            >
-              {i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : i + 1}
-
-              {/* Insignia 🏆 solo para el primero */}
-              {i === 0 && (
-                <div className="absolute -top-2 -right-2 bg-yellow-500 text-white text-xs px-2 py-0.5 rounded-full shadow-md animate-pulse">
-                  🏆
+          <div className="space-y-4">
+            {productos.map((prod, i) => (
+              <div key={prod.id} className={`flex items-center gap-4 px-4 py-3 rounded-2xl bg-gradient-to-r ${color} border-l-4 border-${borde} shadow-sm hover:shadow-md transition transform hover:-translate-y-1 hover:scale-[1.01] duration-300`}>
+                <div className={`relative w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-full shadow-inner text-white font-bold text-sm sm:text-lg ${
+                  i === 0 ? 'bg-gradient-to-tr from-yellow-400 to-yellow-500'
+                    : i === 1 ? 'bg-gradient-to-tr from-gray-300 to-gray-400'
+                    : i === 2 ? 'bg-gradient-to-tr from-orange-400 to-orange-500'
+                    : 'bg-gray-700'
+                }`}>
+                  {i === 0 ? '🥇' : i === 1 ? '🥈' : i === 2 ? '🥉' : i + 1}
+                  {i === 0 && (
+                    <div className="absolute -top-2 -right-2 bg-yellow-500 text-white text-xs px-2 py-0.5 rounded-full shadow-md animate-pulse">
+                      🏆
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-
-            {/* Imagen */}
-            <img
-              src={prod.imagen_producto}
-              alt={prod.nombre}
-              className="w-14 h-14 rounded-lg object-cover shadow-md border border-gray-300"
-            />
-
-            {/* Detalles */}
-            <div className="flex-1">
-              <p className="text-md font-semibold text-gray-800 truncate">{prod.nombre}</p>
-              <p className="text-sm text-gray-600">
-                Cantidad: <span className="font-bold text-gray-700">{prod.total_vendido}</span>
-              </p>
-            </div>
+                <img src={prod.imagen_producto} alt={prod.nombre} className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg object-cover shadow-md border border-gray-300" />
+                <div className="flex-1">
+                  <p className="text-sm sm:text-md font-semibold text-gray-800 truncate">{prod.nombre}</p>
+                  <p className="text-xs sm:text-sm text-gray-600 truncate">Cantidad: <span className="font-bold text-gray-700">{prod.total_vendido}</span></p>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </div>
+      ))}
     </div>
-  ))}
-</div>
-
-
   </div>
 );
+
 
 
 }

@@ -34,68 +34,69 @@ export const FiltrosProducto = ({ onFiltrar }) => {
   };
 
   return (
-    <div className="flex flex-wrap gap-4 p-4 bg-white rounded-xl shadow-md mb-6 items-center">
-      <input
-        type="text"
-        name="nombre"
-        placeholder="Buscar por nombre"
-        className="border p-2 rounded w-full sm:w-auto"
-        onChange={handleChange}
-      />
+  <div className="flex flex-wrap gap-4 p-4 bg-white rounded-xl shadow-md mb-6 items-center justify-start">
+    <input
+      type="text"
+      name="nombre"
+      placeholder="Buscar por nombre"
+      className="border p-2 rounded w-full sm:w-auto flex-1 min-w-[155px]"
+      onChange={handleChange}
+    />
 
-      {!mostrarInputTipo ? (
-        <div className="flex gap-2">
-          <select
-            name="tipo"
-            className="border p-2 rounded"
-            onChange={handleChange}
-          >
-            <option value="">Tipo</option>
-            {tiposProductoPredeterminados.map((tipo, index) => (
-              <option key={index} value={tipo}>{tipo}</option>
-            ))}
-          </select>
-          <button
-            type="button"
-            className="flex items-center gap-2 px-4 py-2 bg-pink-500 text-white rounded-lg hover:bg-pink-600 transition-all shadow-md"
-            onClick={() => setMostrarInputTipo(true)}
-          >
-            <FaPlus />Otro
-          </button>
-        </div>
-      ) : (
-        <div className="flex gap-2 items-center">
-          <input
-            type="text"
-            placeholder="Tipo personalizado"
-            value={tipoPersonalizado}
-            onChange={handleTipoPersonalizado}
-            className="border p-2 rounded"
-          />
-          <button
-            type="button"
-            className="text-sm px-3 py-1 bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
-            onClick={() => {
-              setMostrarInputTipo(false);
-              setTipoPersonalizado("");
-              aplicarFiltro({ ...filtros, tipo: "" });
-            }}
-          >
-            Cancelar
-          </button>
-        </div>
-      )}
+    {!mostrarInputTipo ? (
+      <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+        <select
+          name="tipo"
+          className="border p-2 rounded w-full sm:w-auto flex-1 min-w-[150px]"
+          onChange={handleChange}
+        >
+          <option value="">Tipo</option>
+          {tiposProductoPredeterminados.map((tipo, index) => (
+            <option key={index} value={tipo}>{tipo}</option>
+          ))}
+        </select>
+        <button
+          type="button"
+          className="w-full sm:w-auto flex items-center justify-center gap-2 px-4 py-2 bg-pink-500 text-white rounded-lg hover:bg-pink-600 transition-all shadow-md"
+          onClick={() => setMostrarInputTipo(true)}
+        >
+          <FaPlus /> Otro
+        </button>
+      </div>
+    ) : (
+      <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+        <input
+          type="text"
+          placeholder="Tipo personalizado"
+          value={tipoPersonalizado}
+          onChange={handleTipoPersonalizado}
+          className="border p-2 rounded w-full sm:w-auto flex-1 min-w-[150px]"
+        />
+        <button
+          type="button"
+          className="w-full sm:w-auto text-sm px-3 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400 transition"
+          onClick={() => {
+            setMostrarInputTipo(false);
+            setTipoPersonalizado("");
+            aplicarFiltro({ ...filtros, tipo: "" });
+          }}
+        >
+          Cancelar
+        </button>
+      </div>
+    )}
 
-      <select
-        name="genero"
-        className="border p-2 rounded"
-        onChange={handleChange}
-      >
-        <option value="">Genero</option>
-        <option value="Femenino">Femenino</option>
-        <option value="Masculino">Masculino</option>
-        <option value="Unisex">Unisex</option>
-      </select>
-    </div>
-  );
+    <select
+      name="genero"
+      className="border p-2 rounded w-full sm:w-auto flex-1 min-w-[150px]"
+      onChange={handleChange}
+    >
+      <option value="">Género</option>
+      <option value="Femenino">Femenino</option>
+      <option value="Masculino">Masculino</option>
+      <option value="Unisex">Unisex</option>
+    </select>
+  </div>  
+);
+
 };

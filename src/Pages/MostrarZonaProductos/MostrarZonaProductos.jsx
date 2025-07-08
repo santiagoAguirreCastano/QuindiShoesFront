@@ -12,7 +12,7 @@ export const ListaZonas = () => {
 
   const cargarZonas = () => {
     axios
-      .get("https://quindishoes-backend-def.onrender.com/zonaProducto", {
+      .get("http://localhost:3000/zonaProducto", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setZonas(res.data))
@@ -25,7 +25,7 @@ export const ListaZonas = () => {
 
   const handleEliminar = (id) => {
     axios
-      .delete(`https://quindishoes-backend-def.onrender.com/zonaProducto/${id}`, {
+      .delete(`http://localhost:3000/zonaProducto/${id}`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then(() => cargarZonas())
