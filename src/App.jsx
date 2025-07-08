@@ -77,6 +77,7 @@ function App() {
       <div className="relative min-h-screen flex flex-col">
         <div className="flex-1 flex flex-col">
          <ScrollToTop />
+         <Accesibilidad />
             <AnimatePresence mode="wait">
         <Routes location={location} key={location.pathname}>
           <Route path="/nosotros" element={<PageWrapper><Nosotros /></PageWrapper>} />
