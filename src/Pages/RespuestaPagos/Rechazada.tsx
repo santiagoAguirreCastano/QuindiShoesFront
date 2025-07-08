@@ -16,7 +16,7 @@ export function Rechazada() {
     if (paymentId && preferenceId && status) {
       // Verificamos el estado del pago con Axios en caso de que falle
       axios
-        .post('http://localhost:3000/api/payment/verify_payment', { paymentId, preferenceId })
+        .post('https://quindishoes-backend-def.onrender.com/api/payment/verify_payment', { paymentId, preferenceId })
         .then((response) => {
           // Maneja la lógica si el pago está fallido
           if (response.data.status !== 'approved') {

@@ -61,7 +61,7 @@ export const ListaResenas: React.FC<{ usuario_id?: number }> = ({ usuario_id }) 
   const [yaTieneResena, setYaTieneResena] = useState(false);
 
   useEffect(() => {
-    axios.get("http://localhost:3000/resena/todas")
+    axios.get("https://quindishoes-backend-def.onrender.com/resena/todas")
       .then((res) => {
         setResenas(res.data);
         const yaTiene = res.data.some((r: any) => r.id_usuario === usuario_id);
@@ -89,7 +89,7 @@ export const ListaResenas: React.FC<{ usuario_id?: number }> = ({ usuario_id }) 
 
     try {
       const fecha_resena = new Date().toISOString().slice(0, 19).replace("T", " ");
-      await axios.post("http://localhost:3000/resena/agregar", {
+      await axios.post("https://quindishoes-backend-def.onrender.com/resena/agregar", {
         resena: mensajeEdit,
         fecha_resena,
         id_usuario: usuario_id,
@@ -121,7 +121,7 @@ export const ListaResenas: React.FC<{ usuario_id?: number }> = ({ usuario_id }) 
     setEnviando(true);
     try {
       const fecha_resena = new Date().toISOString().slice(0, 19).replace("T", " ");
-      await axios.put("http://localhost:3000/resena/editar", {
+      await axios.put("https://quindishoes-backend-def.onrender.com/resena/editar", {
         resena: mensajeEdit,
         fecha_resena,
         id_usuario,
@@ -155,7 +155,7 @@ export const ListaResenas: React.FC<{ usuario_id?: number }> = ({ usuario_id }) 
     if (!confirm.isConfirmed) return;
 
     try {
-      await axios.delete("http://localhost:3000/resena/eliminar", {
+      await axios.delete("https://quindishoes-backend-def.onrender.com/resena/eliminar", {
         data: { id_usuario },
       });
       setResenas((prev) => prev.filter((r) => r.id_usuario !== id_usuario));

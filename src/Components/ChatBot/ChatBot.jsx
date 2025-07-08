@@ -30,7 +30,7 @@ const ChatBot = () => {
     setUserInput("");
 
     try {
-      const response = await axios.post("http://localhost:3000/api/chat", {
+      const response = await axios.post("https://quindishoes-backend-def.onrender.com/api/chat", {
         question: userInput,
         history: updatedMessages,
       });
@@ -44,7 +44,7 @@ const ChatBot = () => {
   // Nuevo useEffect para enviar productos a la IA al cargar el chat
   useEffect(() => {
   if (chatVisible) {
-    axios.post("http://localhost:3000/enviarProductosAI")
+    axios.post("https://quindishoes-backend-def.onrender.com/enviarProductosAI")
       .then(response => {
         console.log('Productos enviados a la IA:', response.data);
       })

@@ -33,7 +33,7 @@ export const ListaMateriales = () => {
 
   const cargarMateriales = () => {
     axios
-      .get("http://localhost:3000/material", {
+      .get("https://quindishoes-backend-def.onrender.com/material", {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -48,7 +48,7 @@ export const ListaMateriales = () => {
 
   const handleEliminar = (id) => {
     axios
-      .delete(`http://localhost:3000/material/${id}`, {
+      .delete(`https://quindishoes-backend-def.onrender.com/material/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

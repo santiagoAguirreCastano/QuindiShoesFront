@@ -29,7 +29,7 @@ export const BuscadorProductos = () => {
 
   const obtenerTodosLosProductos = async () => {
     try {
-      const res = await axios.get("http://localhost:3000/producto/public");
+      const res = await axios.get("https://quindishoes-backend-def.onrender.com/producto/public");
       setProductos(res.data);
     } catch (err) {
       console.error("Error al obtener productos:", err);
@@ -38,7 +38,7 @@ export const BuscadorProductos = () => {
 
   const buscarProductos = async () => {
     try {
-      const res = await axios.post("http://localhost:3000/buscadorProducto", { nombre, ...filtros });
+      const res = await axios.post("https://quindishoes-backend-def.onrender.com/buscadorProducto", { nombre, ...filtros });
       setProductos(res.data);
     } catch (err) {
       console.error("Error en búsqueda:", err);

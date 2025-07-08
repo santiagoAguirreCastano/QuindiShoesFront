@@ -258,7 +258,7 @@ export function DetalleProducto() {
     country: "co",
     method: "POST",
     response: "https://quindi-shoes-frontend-yemj.vercel.app/pagos/respuesta",
-    confirmation: "http://localhost:3000/api/pagos/confirmacion",
+    confirmation: "https://quindishoes-backend-def.onrender.com/api/pagos/confirmacion",
     external: "false",
     x_extra1: String(usuario_id),
     x_extra2: JSON.stringify({

@@ -10,7 +10,7 @@ const PaymentBrick = React.memo(() => {
   useEffect(() => {
     const fetchPreferenceId = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/create_preference", {
+        const response = await fetch("https://quindishoes-backend-def.onrender.com/api/create_preference", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -86,7 +86,7 @@ const PaymentBrick = React.memo(() => {
             console.log("onSubmit ejecutado", formData);
 
             // Envía el token y datos al backend para crear el pago real
-            const response = await fetch("http://localhost:3000/api/process_payment", {
+            const response = await fetch("https://quindishoes-backend-def.onrender.com/api/process_payment", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
@@ -126,7 +126,7 @@ const PaymentBrick = React.memo(() => {
 
             console.log("Enviando al backend:", paymentData);
 
-            fetch("http://localhost:3000/api/process_payment", {
+            fetch("https://quindishoes-backend-def.onrender.com/api/process_payment", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",

@@ -124,7 +124,7 @@ const [mape, setMape] = useState<number | null>(null);
         const cargarDatos = async () => {
             setLoading(true);
             try {
-                const res = await axios.get(`http://localhost:3000/metricas/ventas?agrupacion=${agrupacion}`);
+                const res = await axios.get(`https://quindishoes-backend-def.onrender.com/metricas/ventas?agrupacion=${agrupacion}`);
                 const datosFormateados: ChartData[] = res.data.map((item: any) => {
                     let rawDate = item.fecha;
                     if (agrupacion === 'mes') {
@@ -167,7 +167,7 @@ const [mape, setMape] = useState<number | null>(null);
   }
 
   try {
-    const res = await fetch(`http://localhost:3000/metricasIA/metricas/prediccion?agrupacion=${agrupacion}`);
+    const res = await fetch(`https://quindishoes-backend-def.onrender.com/metricasIA/metricas/prediccion?agrupacion=${agrupacion}`);
     if (!res.ok) {
       const errorText = await res.text();
       throw new Error(`HTTP error! status: ${res.status}, message: ${errorText}`);
@@ -415,8 +415,8 @@ console.log("Valores numéricos:", chartData.map(d => ({
         const cargarTopProductos = async () => {
             try {
                 const [masRes, menosRes] = await Promise.all([
-                    axios.get('http://localhost:3000/metricas/top-productos?tipo=mas&limite=5'),
-                    axios.get('http://localhost:3000/metricas/top-productos?tipo=menos&limite=5')
+                    axios.get('https://quindishoes-backend-def.onrender.com/metricas/top-productos?tipo=mas&limite=5'),
+                    axios.get('https://quindishoes-backend-def.onrender.com/metricas/top-productos?tipo=menos&limite=5')
                 ]);
                 setTopProductosMas(masRes.data);
                 setTopProductosMenos(menosRes.data);
@@ -430,7 +430,7 @@ console.log("Valores numéricos:", chartData.map(d => ({
     useEffect(() => {
         const cargarInactivos = async () => {
             try {
-                const res = await axios.get('http://localhost:3000/metricas/productos-inactivos');
+                const res = await axios.get('https://quindishoes-backend-def.onrender.com/metricas/productos-inactivos');
                 setProductosInactivos(res.data);
             } catch (err) {
                 console.error('Error al obtener productos inactivos:', err);
