@@ -18,12 +18,17 @@ export const Nosotros = () => {
       <div className="flex flex-col">
 
         {/* NUESTRA FILOSOFÍA */}
-        <section className="w-full grid grid-cols-1 md:grid-cols-2 min-h-screen bg-[#fff1f5] snap-start items-center">
+        <motion.section
+          className="w-full grid grid-cols-1 md:grid-cols-2 min-h-screen bg-[#fff1f5] snap-start items-center"
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          viewport={{ once: true }}
+        >
           <motion.div
             className="w-full h-[40vh] md:h-full"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1.5 }}
+            whileHover={{ scale: 1.01 }}
+            transition={{ duration: 0.5 }}
           >
             <img
               src={nuestraFilosofia}
@@ -36,8 +41,9 @@ export const Nosotros = () => {
             <motion.div
               className="max-w-xl"
               initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
+              whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 1 }}
+              viewport={{ once: true }}
             >
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-[#d95b83] mb-6 leading-tight">
                 Nuestra Filosofía
@@ -49,17 +55,24 @@ export const Nosotros = () => {
               </p>
             </motion.div>
           </div>
-        </section>
+        </motion.section>
 
         {/* NUESTRA FELICIDAD */}
         <motion.section
-          className="w-full bg-[#fff9fb] px-6 sm:px-10 lg:px-20 py-24 snap-start min-h-screen flex items-center"
-          initial={{ opacity: 0, y: 40 }}
+          className="w-full bg-[#fff7fa] py-24 px-6 sm:px-10 lg:px-20 min-h-screen flex items-center"
+          initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
+          viewport={{ once: true }}
         >
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-            <div className="order-2 md:order-1 space-y-6">
+            <motion.div
+              className="order-2 md:order-1 space-y-6"
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1 }}
+              viewport={{ once: true }}
+            >
               <h2 className="text-3xl sm:text-4xl font-bold text-[#d95b83] leading-tight">
                 Nuestra felicidad
               </h2>
@@ -68,9 +81,13 @@ export const Nosotros = () => {
                 para seguir caminando. Cada sonrisa al recibir su pedido es nuestro motor. QuindiShoes
                 no solo vende calzado, también comparte felicidad.
               </p>
-            </div>
+            </motion.div>
 
-            <div className="order-1 md:order-2">
+            <motion.div
+              className="order-1 md:order-2"
+              whileHover={{ scale: 1.01 }}
+              transition={{ duration: 0.5 }}
+            >
               <div className="relative rounded-3xl overflow-hidden shadow-xl border-4 border-[#f3cbd8] w-full">
                 <img
                   src={nuestraFelicidad}
@@ -81,20 +98,25 @@ export const Nosotros = () => {
                   Siente el estilo
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </motion.section>
 
         {/* HISTORIA */}
         <motion.section
-          className="w-full bg-gradient-to-br from-[#fff4f7] via-white to-[#ffeef3] px-6 sm:px-10 lg:px-20 py-24 snap-start min-h-screen flex items-center relative"
-          initial={{ opacity: 0, y: 40 }}
+          className="w-full bg-[#fff7fa] py-24 px-6 sm:px-10 lg:px-20 min-h-screen flex items-center"
+          initial={{ opacity: 0, y: 60 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
+          viewport={{ once: true }}
         >
           <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/diagonal-noise.png')]" />
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center relative z-10">
-            <div className="order-1">
+            <motion.div
+              className="order-1"
+              whileHover={{ scale: 1.01 }}
+              transition={{ duration: 0.5 }}
+            >
               <div className="relative rounded-3xl overflow-hidden shadow-xl border-4 border-[#f3cbd8] w-full">
                 <img
                   src={nuestraHistoria}
@@ -105,8 +127,14 @@ export const Nosotros = () => {
                   Camino con alegría
                 </div>
               </div>
-            </div>
-            <div className="order-2 space-y-6">
+            </motion.div>
+            <motion.div
+              className="order-2 space-y-6"
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1 }}
+              viewport={{ once: true }}
+            >
               <h2 className="text-3xl sm:text-4xl font-bold text-[#d95b83] leading-tight">
                 Nuestro origen
               </h2>
@@ -119,17 +147,19 @@ export const Nosotros = () => {
                 Instagram, Facebook y TikTok, y también ofrecemos venta al por mayor como proveedores.
                 Seguimos caminando contigo.
               </p>
-            </div>
+            </motion.div>
           </div>
         </motion.section>
 
         {/* PILARES */}
         <motion.section
-          className="bg-[#fff7fa] py-24 px-6 sm:px-10 lg:px-20 snap-start min-h-screen flex items-center"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+          className="w-full bg-[#fff7fa] py-24 px-6 sm:px-10 lg:px-20 min-h-screen flex items-center"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          viewport={{ once: true }}
         >
+
           <div className="w-full max-w-7xl mx-auto">
             <div className="text-center mb-14 space-y-4 px-4">
               <h2 className="text-3xl sm:text-4xl font-bold text-[#d95b83]">Nuestros pilares</h2>
