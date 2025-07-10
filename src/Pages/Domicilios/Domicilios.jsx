@@ -46,6 +46,9 @@ const Domicilios = () => {
               <p>
                 <strong className="text-blue-600">Descuento:</strong> {factura.descuento}%
               </p>
+              <p>
+                <strong className="text-blue-600">Direccion:</strong> {factura.direccion}
+              </p>
             </div>
 
             <h3 className="mt-4 font-semibold text-gray-700 text-sm sm:text-base">
