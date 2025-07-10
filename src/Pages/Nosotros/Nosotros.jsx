@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { FaStar, FaQuoteLeft } from "react-icons/fa";
 import nuestraHistoria from "../../assets/images/pexels-atahandemir-10323260.jpg";
 
 export const Nosotros = () => {
@@ -9,112 +10,115 @@ export const Nosotros = () => {
   };
 
   return (
-    <div className="w-full bg-white text-gray-800 font-sans">
+    <div className="w-full font-sans text-gray-800 bg-white">
       {/* HERO */}
-      <section className="relative h-[60vh] sm:h-[70vh] w-full overflow-hidden flex items-center justify-center">
-        <img
-          src="https://images.unsplash.com/photo-1549294413-26f195200c16"
-          alt="Filosofía QuindiShoes"
-          className="absolute w-full h-full object-cover object-center brightness-[0.5]"
-        />
-        <div className="relative z-10 text-center text-white px-4 sm:px-6">
-          <h1 className="text-4xl md:text-5xl font-bold leading-tight mb-4">Nuestra Filosofía</h1>
-          <p className="text-lg md:text-xl max-w-xl mx-auto leading-relaxed text-balance">
-            Cada paso cuenta. Cada historia importa.
-          </p>
+      <section className="w-full grid grid-cols-1 md:grid-cols-2 min-h-[50vh] md:min-h-[60vh]">
+        <div className="bg-[#f9e6eb] flex flex-col justify-center items-center py-10 px-4 text-center md:text-left">
+          <motion.div
+            className="max-w-xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+          >
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold bg-gradient-to-r from-[#d95b83] to-[#f48ca5] bg-clip-text text-transparent drop-shadow-md leading-tight">
+              Nuestra <br /> Filosofía
+            </h1>
+          </motion.div>
         </div>
+
+        <motion.div
+          className="w-full h-full max-h-[60vh]"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5 }}
+        >
+          <img
+            src="https://images.unsplash.com/photo-1549294413-26f195200c16"
+            alt="Filosofía QuindiShoes"
+            className="object-cover w-full h-full"
+          />
+        </motion.div>
       </section>
 
-{/* HISTORIA */}
-<motion.section
-  className="w-full px-4 sm:px-6 py-24 bg-white"
-  initial={{ opacity: 0, y: 40 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 1 }}
->
-  <div className="max-w-[1040px] mx-auto flex flex-col space-y-20">
-    {/* Encabezado historia */}
-    <div className="text-center space-y-6 max-w-[1040px] mx-auto">
-      <h2 className="text-3xl sm:text-4xl font-bold text-[#c72c5e]">Nuestra Historia</h2>
-      <p className="text-gray-700 text-base sm:text-lg leading-relaxed text-balance text-center">
-        QuindiShoes nació en 2019 como un pequeño emprendimiento que operaba exclusivamente desde Instagram.
-        En ese entonces no contábamos con local físico, pero sí con grandes sueños. Con el tiempo y gracias a
-        la fidelidad de nuestros clientes, las ventas comenzaron a crecer. Esto nos permitió abrir nuestra
-        primera tienda en la Cra. 16 #21-13, frente al Banco de la República, en Armenia (Quindío).
-        Actualmente, además de nuestro punto físico, seguimos atendiendo con cercanía a través de WhatsApp,
-        Instagram, Facebook y TikTok, y también ofrecemos venta al por mayor como proveedores.
-        Seguimos caminando contigo.
-      </p>
-    </div>
+      {/* HISTORIA */}
+      <motion.section
+        className="w-full bg-gradient-to-br from-[#fff4f7] via-white to-[#ffeef3] px-6 py-32 relative overflow-hidden"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1 }}
+      >
+        <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/diagonal-noise.png')]" />
+        
+        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 relative z-10 items-center">
+          
+          {/* Imagen a la izquierda SIEMPRE */}
+          <div className="order-1 md:order-1">
+            <div className="relative rounded-3xl overflow-hidden shadow-xl border-4 border-[#f3cbd8] w-full h-full">
+              <img
+                src={nuestraHistoria}
+                alt="Nuestra historia"
+                className="w-full h-auto md:h-[50vh] object-cover"
+              />
+              <div className="absolute bottom-0 left-0 bg-[#d95b83]/90 text-white px-6 py-3 rounded-tr-3xl text-sm font-semibold tracking-wide">
+                Siente el estilo
+              </div>
+            </div>
+          </div>
 
-    {/* Imagen + propósito */}
-    <div className="flex flex-col md:flex-row gap-12 items-center max-w-[1040px] mx-auto">
-      <div className="rounded-3xl overflow-hidden shadow-xl w-full md:w-1/2 h-auto md:h-[380px]">
-        <img
-          src={nuestraHistoria}
-          alt="Nuestra historia"
-          className="w-full h-full object-cover"
-        />
-      </div>
-
-      <div className="space-y-4 w-full md:w-1/2">
-        <h3 className="text-2xl font-bold text-[#b65775]">Una tienda con propósito</h3>
-        <p className="text-gray-700 text-base leading-relaxed text-balance">
-          Elegimos cada par como si fuera para nosotros mismos. Más que vender zapatos, conectamos personas
-          con estilo, seguridad y bienestar a través de una experiencia de compra cercana y moderna.
-        </p>
-        <p className="text-gray-700 text-base leading-relaxed text-balance">
-          Nos aliamos con marcas comprometidas con el confort, la innovación y la responsabilidad.
-          Porque creemos que cada paso puede ser más consciente.
-        </p>
-      </div>
-    </div>
-  </div>
-</motion.section>
-
-
+          {/* Texto a la derecha */}
+          <div className="order-2 md:order-2 space-y-6">
+            <h2 className="text-4xl sm:text-5xl font-bold text-[#d95b83] leading-tight">
+              Nuestro origen
+            </h2>
+            <p className="text-gray-700 text-lg leading-relaxed">
+              QuindiShoes nació en 2019 como un pequeño emprendimiento que operaba exclusivamente desde Instagram.
+              En ese entonces no contábamos con local físico, pero sí con grandes sueños. Con el tiempo y gracias a
+              la fidelidad de nuestros clientes, las ventas comenzaron a crecer. Esto nos permitió abrir nuestra
+              primera tienda en la Cra. 16 #21-13, frente al Banco de la República, en Armenia (Quindío).
+              Actualmente, además de nuestro punto físico, seguimos atendiendo con cercanía a través de WhatsApp,
+              Instagram, Facebook y TikTok, y también ofrecemos venta al por mayor como proveedores.
+              Seguimos caminando contigo.
+            </p>
+          </div>
+        </div>
+      </motion.section>
 
 
       {/* VALORES */}
       <motion.section
-        className="bg-[#fef6f9] py-16 sm:py-20 px-4 sm:px-6"
+        className="bg-[#fff7fa] py-24 px-6"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <div className="text-center max-w-2xl mx-auto mb-12 space-y-4">
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#c72c5e]">Nuestros pilares</h2>
-          <p className="text-gray-600 text-sm sm:text-base leading-relaxed text-balance">
-            No somos una marca de zapatos. Somos una tienda que selecciona cuidadosamente lo que usas, porque sabemos que cada paso refleja tu historia.
+        <div className="text-center max-w-2xl mx-auto mb-14 space-y-4">
+          <h2 className="text-4xl font-bold text-[#d95b83]">Nuestros pilares</h2>
+          <p className="text-gray-700 text-base leading-relaxed">
+            No somos una marca de zapatos. Somos una tienda que selecciona cuidadosamente lo que usas,
+            porque sabemos que cada paso refleja tu historia.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
-          {[
-            {
-              titulo: "Selección con criterio",
-              texto:
-                "Investigamos, probamos y elegimos marcas que cumplen con estándares de comodidad, estilo y durabilidad. Solo ofrecemos lo que realmente usaríamos.",
-            },
-            {
-              titulo: "Belleza con conciencia",
-              texto:
-                "Priorizamos marcas que trabajan con materiales nobles, procesos responsables y una visión a largo plazo.",
-            },
-            {
-              titulo: "Experiencia que acompaña",
-              texto:
-                "No se trata solo del producto: se trata de cómo te sientes cuando lo recibes, cuando lo usas, y cuando sabes que elegiste bien.",
-            },
-          ].map((val, i) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 max-w-6xl mx-auto">
+          {[{
+            titulo: "Selección con criterio",
+            texto: "Investigamos, probamos y elegimos marcas que cumplen con estándares de comodidad, estilo y durabilidad. Solo ofrecemos lo que realmente usaríamos.",
+          }, {
+            titulo: "Belleza con conciencia",
+            texto: "Priorizamos marcas que trabajan con materiales nobles, procesos responsables y una visión a largo plazo.",
+          }, {
+            titulo: "Experiencia que acompaña",
+            texto: "No se trata solo del producto: se trata de cómo te sientes cuando lo recibes, cuando lo usas, y cuando sabes que elegiste bien.",
+          }].map((val, i) => (
             <motion.div
               key={i}
-              whileHover={{ scale: 1.05 }}
-              className="p-6 sm:p-8 bg-white rounded-3xl shadow-md text-left border border-pink-100 h-full flex flex-col justify-between"
+              whileHover={{ y: -6, transition: { duration: 0.3 } }}
+              className="p-8 bg-white rounded-3xl shadow-lg border border-pink-100 min-h-[320px] flex flex-col justify-between"
             >
-              <div>
-                <h3 className="text-xl font-semibold text-[#b65775] mb-2">{val.titulo}</h3>
-                <p className="text-gray-600 text-base leading-relaxed text-balance">{val.texto}</p>
+              <div className="space-y-4">
+                <FaStar className="text-[#d95b83] text-3xl" />
+                <h3 className="text-xl font-semibold text-[#d95b83]">{val.titulo}</h3>
+                <p className="text-gray-600 text-base leading-relaxed">{val.texto}</p>
               </div>
             </motion.div>
           ))}
@@ -123,14 +127,14 @@ export const Nosotros = () => {
 
       {/* MAPA */}
       <motion.section
-        className="bg-[#fef6f9] py-16 sm:py-20 px-4 sm:px-6"
+        className="bg-[#fff1f5] py-24 px-6"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-12 space-y-4">
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#c72c5e]">¿Dónde encontrarnos?</h2>
-          <p className="text-gray-600 text-sm sm:text-base leading-relaxed text-balance">
+        <div className="text-center max-w-2xl mx-auto mb-10 space-y-4">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#d95b83]">¿Dónde encontrarnos?</h2>
+          <p className="text-gray-600 text-base leading-relaxed">
             Ven a conocernos frente al Banco de la República: Cra. 16 #21-13, Armenia, Quindío.
           </p>
         </div>
@@ -147,36 +151,39 @@ export const Nosotros = () => {
         </div>
       </motion.section>
 
-      {/* BOTÓN RESEÑAS */}
+      {/* RESEÑAS */}
       <motion.section
-        className="max-w-6xl mx-auto px-4 sm:px-6 py-16 sm:py-20 text-center"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        className="bg-gradient-to-r from-[#f4b9c2] to-[#fddde9] text-gray-800 text-center py-24 px-6"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <h2 className="text-3xl sm:text-4xl font-bold text-[#c72c5e] mb-6 sm:mb-8">
-          Lo que dicen nuestros clientes
-        </h2>
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          onClick={abrirResenasGoogle}
-          className="bg-[#c72c5e] text-white px-6 py-3 rounded-full shadow-lg hover:bg-[#a3224b] transition duration-300 text-sm sm:text-base"
-        >
-          Ver reseñas en Google
-        </motion.button>
+        <div className="flex flex-col items-center space-y-6">
+          <h2 className="text-3xl sm:text-4xl font-bold">Lo que dicen nuestros clientes</h2>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            onClick={abrirResenasGoogle}
+            className="flex items-center gap-3 bg-white text-[#d95b83] px-6 py-3 rounded-full shadow-md text-sm sm:text-base font-semibold"
+          >
+            <FaStar className="text-[#d95b83]" /> Ver reseñas en Google
+          </motion.button>
+        </div>
       </motion.section>
 
       {/* FRASE FINAL */}
       <motion.div
-        className="py-28 sm:py-36 text-center px-4 sm:px-6"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        className="bg-[#fae4ec] text-gray-800 py-20 px-6 text-center"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         transition={{ duration: 1 }}
       >
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-[#c72c5e] max-w-2xl mx-auto leading-snug text-balance">
-          Porque no se trata solo de vender zapatos. Se trata de ayudarte a caminar con confianza.
-        </h2>
+        <div className="max-w-3xl mx-auto space-y-6">
+          <FaQuoteLeft className="text-[#d95b83] text-4xl mx-auto" />
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold leading-snug">
+            Porque no se trata solo de vender zapatos. Se trata de ayudarte a caminar con confianza.
+          </h2>
+        </div>
       </motion.div>
     </div>
   );
