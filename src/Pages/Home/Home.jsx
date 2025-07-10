@@ -93,7 +93,8 @@ export const Home = () => {
 
       {/* MOVIMIENTO */}
       <motion.section
-        className="flex flex-col md:flex-row items-center justify-between gap-10 px-6 md:px-20 py-24 bg-pink-50"
+  className="flex flex-col lg:flex-row items-center justify-center gap-10 px-4 sm:px-10 md:px-16 lg:px-20 py-20 bg-pink-50 text-center lg:text-left"
+
         initial={{ opacity: 0, y: 60 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 1 }}
@@ -115,10 +116,11 @@ export const Home = () => {
         <motion.img
           src={movementImage}
           alt="Movimiento"
-          className="rounded-3xl w-full md:max-w-[500px] shadow-xl object-cover"
+          className="rounded-3xl w-full max-w-[400px] sm:max-w-[450px] md:max-w-[500px] lg:max-w-[600px] shadow-xl object-cover"
           whileHover={{ scale: 1.02 }}
           transition={{ duration: 0.5 }}
         />
+
       </motion.section>
 
       {/* PARA TI */}

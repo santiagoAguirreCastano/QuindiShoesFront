@@ -24,7 +24,8 @@ export const Nosotros = () => {
 
   return (
     <div className="w-full font-sans text-gray-800 bg-white">
-      <div className="h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth">
+      <div className="min-h-screen overflow-y-auto scroll-smooth">
+
 
         {/* NUESTRA FILOSOFÍA */}
         <section className="w-full grid grid-cols-1 md:grid-cols-2 min-h-screen bg-[#fff1f5] snap-start items-center">
@@ -61,12 +62,14 @@ export const Nosotros = () => {
         </section>
 
         {/* NUESTRA FELICIDAD */}
-        <motion.section
-          className="w-full bg-[#fff9fb] px-6 sm:px-10 lg:px-20 py-24 snap-start min-h-screen flex items-center"
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-        >
+       <motion.section
+        className="w-full bg-[#fff7fa] py-24 px-6 sm:px-10 lg:px-20 min-h-screen flex items-center"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+        viewport={{ once: true }}
+      >
+
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             <div className="order-2 md:order-1 space-y-6">
               <h2 className="text-3xl sm:text-4xl font-bold text-[#d95b83] leading-tight">
@@ -96,11 +99,13 @@ export const Nosotros = () => {
 
         {/* HISTORIA */}
         <motion.section
-          className="w-full bg-gradient-to-br from-[#fff4f7] via-white to-[#ffeef3] px-6 sm:px-10 lg:px-20 py-24 snap-start min-h-screen flex items-center relative"
-          initial={{ opacity: 0, y: 40 }}
+          className="w-full bg-[#fff7fa] py-24 px-6 sm:px-10 lg:px-20 min-h-screen flex items-center"
+          initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          viewport={{ once: true }}
         >
+
           <div className="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/diagonal-noise.png')]" />
           <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center relative z-10">
             <div className="order-1">
@@ -134,11 +139,13 @@ export const Nosotros = () => {
 
         {/* PILARES */}
         <motion.section
-          className="bg-[#fff7fa] py-24 px-6 sm:px-10 lg:px-20 snap-start min-h-screen flex items-center"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
+          className="w-full bg-[#fff7fa] py-24 px-6 sm:px-10 lg:px-20 min-h-screen flex items-center"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          viewport={{ once: true }}
         >
+
           <div className="w-full max-w-7xl mx-auto">
             <div className="text-center mb-14 space-y-4 px-4">
               <h2 className="text-3xl sm:text-4xl font-bold text-[#d95b83]">Nuestros pilares</h2>
