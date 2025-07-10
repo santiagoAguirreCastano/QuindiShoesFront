@@ -24,7 +24,8 @@ export const Nosotros = () => {
 
   return (
     <div className="w-full font-sans text-gray-800 bg-white">
-      <div className="min-h-screen overflow-y-auto scroll-smooth">
+      <div className="h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth">
+
 
 
         {/* NUESTRA FILOSOFÍA */}
