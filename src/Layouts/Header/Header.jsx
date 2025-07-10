@@ -4,7 +4,7 @@ import { FaHeart, FaShoppingCart, FaUser, FaBars, FaTimes } from "react-icons/fa
 import { ContadorCarritoContext } from "../../Contexts/ContadorCarritoContext";
 import { motion, AnimatePresence } from "framer-motion";
 
-export const Header = () => {
+export const Header = ({ sticky }) => {
   const { contador } = useContext(ContadorCarritoContext);
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -18,7 +18,7 @@ export const Header = () => {
   };
 
   return (
-    <header className="bg-white shadow-md top-0 z-50 py-4 px-6">
+    <header className={`bg-white shadow-md z-50 py-4 px-6 ${sticky ? 'sticky top-0' : ''}`}>
       <div className="max-w-7xl mx-auto flex justify-between items-center">
         <h1 className="text-2xl sm:text-3xl font-black text-gray-800">QuindiShoes</h1>
 

@@ -43,6 +43,8 @@ import { PageWrapper } from './Components/PageWrapper/PageWrapper'
 function App() {
   const location = useLocation();
   const rutaActual = location.pathname.toLowerCase();
+  const esNosotros = rutaActual === "/nosotros";
+
 
   // Rutas donde se oculta SOLO el footer
   const ocultarSoloFooterEn = [
@@ -54,7 +56,8 @@ function App() {
     "/esperando-confirmacion",
     "/validarcorreo",
     "/historial-personalizaciones",
-    "/personalizador"
+    "/personalizador",
+    "/nosotros"
   ];
 
   // Rutas donde se oculta TODO (header + footer)
@@ -72,7 +75,7 @@ function App() {
 
   return (
     <>
-      {!ocultarHeader && <Header />}
+      {!ocultarHeader && <Header sticky={esNosotros} />}
 
       <div className="relative min-h-screen flex flex-col">
         <div className="flex-1 flex flex-col">

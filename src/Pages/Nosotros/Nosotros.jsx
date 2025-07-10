@@ -13,18 +13,9 @@ export const Nosotros = () => {
     window.open(url, "_blank");
   };
 
-  useEffect(() => {
-    document.documentElement.style.scrollBehavior = "smooth";
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.documentElement.style.scrollBehavior = "auto";
-      document.body.style.overflow = "auto";
-    };
-  }, []);
-
   return (
     <div className="w-full font-sans text-gray-800 bg-white">
-      <div className="h-screen overflow-y-scroll snap-y snap-mandatory scroll-smooth">
+      <div className="flex flex-col">
 
         {/* NUESTRA FILOSOFÍA */}
         <section className="w-full grid grid-cols-1 md:grid-cols-2 min-h-screen bg-[#fff1f5] snap-start items-center">
